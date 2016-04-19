@@ -27,6 +27,7 @@ void vec_sub(double* out, double* v, double* w, int N)
 double vec_norm(double* v, int N)
 {
   // insert code here
+  return 0.0;
 }
 
 // represent out, A, and B by arrays of length M*N

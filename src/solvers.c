@@ -17,9 +17,11 @@ void solve_upper_triangular(double* out, double* U, double* b, int N)
 int jacobi(double* out, double* A, double* b, int N, double epsilon)
 {
   // insert code here
+  return 0;
 }
 
 int gauss_seidel(double* out, double* A, double* b, int N, double epsilon)
 {
   // insert code here
+  return 0;
 }
