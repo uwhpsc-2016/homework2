@@ -166,8 +166,10 @@ def mat_vec(A, x):
     # ensure data types of arrays are double and contiguize the result
     A = numpy.ascontiguousarray(A.astype(numpy.double))
     x = numpy.ascontiguousarray(x.astype(numpy.double))
-    out = numpy.empty_like(x)
     M,N = A.shape
+
+    # see issue uphpsc-2016/syllabus#30
+    out = numpy.ascontiguousarray(numpy.zeros(M, dtype=numpy.double))
 
     if (N != len(x)):
         raise ValueError('Dimension mismatch.')
