@@ -42,7 +42,7 @@ Repository layout:
   functions are called.* Doing so will break the Python wrappers located in
   `homework2/wrappers.py`. Aside from writing your own tests and performing
   computations for your report, everything you need to write for this homework
-  will be put in the files `src/linalg.h` and `src/solvers.h`.
+  will be put in the files `src/linalg.c` and `src/solvers.c`.
   
 * `ctests/`:
 
@@ -112,12 +112,6 @@ arrays. That is, an *M*-by-*N* matirx *A* is represented by an array of length
   Given a matrix `A` of size `M`-by-`N` and a vector `x` of length `N` store the
   matrix-vector product *Ax* in the array `out`. Note that the result will be a
   vector of length `M`.
-  
-* `mat_mat`:
-
-  Given a matrix `A` of size `M`-by-`N` and a matrix `B` of size `N`-by-`K`
-  store the matrix-matrix product *AB* in the matrix `out`. Note that the result
-  will be a matrix of size `M`-by-`K`.
 
 **In `include/solvers.h` and `src/solvers.c`:**
 
@@ -181,6 +175,7 @@ Your implementations will be run through the following test suite:
 For the following tests, let `A` be an `n`-by-`n` 5-diagonal matrix consisting
 of "5" along the main diagonal and "-1" on the (-2),(-1),(+1), and (+2)
 off-diagonals and the vector `b` be the vector `[0, 1, 2, ..., n-1]`.
+Additionally, use an initial guess (`x0`, in the previous hw) of all zeros.
 
 * Does `jacobi` return an approximate solution to the system *Ax = b* for
   various `n`?
