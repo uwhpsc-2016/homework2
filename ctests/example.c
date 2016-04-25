@@ -5,7 +5,7 @@
   to create the dynamic library. From the top level directory (the directory
   above this one named "homework2-githubusername") run
 
-  $ gcc -Llib -Iinclude -lhomework2 ./ctests/example.c -o example
+  $ gcc -Llib -Iinclude -lhomework2 -Wl,-rpath,./lib ./ctests/example.c -o example
   $ ./example
 
 */
