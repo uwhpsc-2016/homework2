@@ -13,6 +13,7 @@ from homework2 import (
     vec_norm,
     mat_add,
     mat_vec,
+    mat_mat,
     solve_lower_triangular,
     solve_upper_triangular,
     jacobi,
@@ -59,6 +60,14 @@ class TestLinalg(unittest.TestCase):
         z = vec_add(x,y)
         error = norm(z - (x+y))
         self.assertAlmostEqual(error, 0)
+
+    def test_mat_mat(self):
+        A = randn(8,8)  # create two random matrices
+        B = randn(8,8)
+        C = mat_mat(A,B)  # product using C code (wrapped by homework2.mat_mat)
+        C_actual = numpy.dot(A,B)  # product using Numpy
+        error = norm(C - C_actual)
+        self.assertLess(error, 1e-8)  # account for floating point error
 
 class TestSolver(unittest.TestCase):
     pass # delete this once you write some tests here
