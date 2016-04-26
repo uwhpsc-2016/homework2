@@ -113,6 +113,12 @@ arrays. That is, an *M*-by-*N* matirx *A* is represented by an array of length
   matrix-vector product *Ax* in the array `out`. Note that the result will be a
   vector of length `M`.
 
+* `mat_mat`:
+
+  Given a matrix `A` of size `M`-by-`N` and a matrix `B` of size `N`-by-`K`
+  store the matrix-matrix product *AB* in the array `out`. Note that the result
+  will be a vector of length `MK`.
+
 **In `include/solvers.h` and `src/solvers.c`:**
 
 * `solve_lower_triangular`, `solve_upper_triangular`:
@@ -154,21 +160,22 @@ arrays. That is, an *M*-by-*N* matirx *A* is represented by an array of length
 
 Your implementations will be run through the following test suite:
 
-* Does `vec_add` return the correct result on a variety of input?
-* Does `vec_sub` return the correct result on a variety of input?
-* Does `vec_norm` return the correct result on a variety of input?
-* Does `mat_add` return the correct result on a variety of input?
-* Does `mat_vec` return the correct result on a variety of input?
-* Does `solve_lower_triangular` return the correct result when `L` is diagonal
+* (1pt) Does `vec_add` return the correct result on a variety of input?
+* (1pt) Does `vec_sub` return the correct result on a variety of input?
+* (1pt) Does `vec_norm` return the correct result on a variety of input?
+* (1pt) Does `mat_add` return the correct result on a variety of input?
+* (1pt) Does `mat_vec` return the correct result on a variety of input?
+* (1pt) Does `mat_mat` return the correct result on a variety of input?
+* (1pt) Does `solve_lower_triangular` return the correct result when `L` is diagonal
   and various choices of `b`? The output will be compared against the output of
   `numpy.linalg.solve`.
-* Does `solve_lower_triangular` return the correct result when `L` is an
+* (2pts) Does `solve_lower_triangular` return the correct result when `L` is an
   arbitrary lower-diagonal matrix and various choices of `b`? The output will be
   compared against the output of `numpy.linalg.solve`.
-* Does `solve_upper_triangular` return the correct result when `U` is diagonal
+* (1pt) Does `solve_upper_triangular` return the correct result when `U` is diagonal
   an various choices of `b`? The output will be compared against the output of
   `numpy.linalg.solve`.
-* Does `solve_upper_triangular` return the correct result when `U` is an
+* (2pts) Does `solve_upper_triangular` return the correct result when `U` is an
   arbitrary lower-diagonal matrix and various choices of `b`? The output will be
   compared against the output of `numpy.linalg.solve`.
 
@@ -177,21 +184,23 @@ of "5" along the main diagonal and "-1" on the (-2),(-1),(+1), and (+2)
 off-diagonals and the vector `b` be the vector `[0, 1, 2, ..., n-1]`.
 Additionally, use an initial guess (`x0`, in the previous hw) of all zeros.
 
-* Does `jacobi` return an approximate solution to the system *Ax = b* for
+* (3pts) Does `jacobi` return an approximate solution to the system *Ax = b* for
   various `n`?
-* Does `jacobi` return an approximate solution to the system *Ax = b* for
+* (3pts) Does `jacobi` return an approximate solution to the system *Ax = b* for
   various `epsilon` greater than `1e-15`?
-* Does `gauss_seidel` return an approximate solution to the system *Ax = b* for
-  various `n`?
-* Does `gauss_seidel` return an approximate solution to the system *Ax = b* for
+* (3pts) Does `gauss_seidel` return an approximate solution to the system *Ax =
+  b* for various `n`?
+* (3pts) Does `gauss_seidel` return an approximate solution to the system *Ax = b* for
   various `epsilon` greater than `1e-15`?
-* Does `jacobi` return the expected number of iterations for this problem for
-  various `n`? Your output will be compared directly with the output from a
-  correct implementation.
-* Does `gauss_seidel` return the expected number of iterations for this problem
+* (3pts) Does `jacobi` return the expected number of iterations for this problem
   for various `n`? Your output will be compared directly with the output from a
-  correct implementation. *Note that you should expect around half as many
-  iterations are required in `gauss_siedel` than in `jacobi`.*
+  correct implementation.
+* (3pts) Does `gauss_seidel` return the expected number of iterations for this
+  problem for various `n`? Your output will be compared directly with the output
+  from a correct implementation. *Note that you should expect around half as
+  many iterations are required in `gauss_siedel` than in `jacobi`.*
+  
+**Total points:** 30/30
 
 ### 2) Report - 20%
 
@@ -200,7 +209,7 @@ repository. Please write your name and UW NetID (e.g. "cswiercz", *not* your
 student ID number) at the top of the document. The report should contain
 responses to the following questions:
 
-1. What is the computational complexity of `solve_lower_triangular` and
+1. (2pts) What is the computational complexity of `solve_lower_triangular` and
    `solve_upper_triangular` as a function of the matrix size `n`? That is, using
    big-oh notation list how much time / how many operations it takes to solve a
    triangular system if the input matrix *L* or *U* is *N*-by-*N*. Please read
@@ -210,8 +219,9 @@ responses to the following questions:
    result!* Listing the complexity without any description will result in zero
    points.
    
-2. Copy the code you wrote for `solve_upper_triangular` and paste it into a
-   markdown cell. You can format the cell to display code nicely using like so:
+2. (4pts) Copy the code you wrote for `solve_upper_triangular` and paste it into
+   a markdown cell. You can format the cell to display code nicely using like
+   so:
    
    <pre lang="no-highlight"><code>
    # The contents of In [1] formatted as "Markdown":
@@ -232,23 +242,25 @@ responses to the following questions:
    See the example notebook `Scratch.nb` for a demonstrations. Answer the
    following questions about your implementation:
    
-   * Does this function have a contiguous memory access pattern?
-   * Assuming the cache create a copy of memory *at* and *after* a requested /
-     particular location do you think `solve_upper_triangular` has any
-     inefficiencies? Why or why not?
+   * (2/4) Does this function have a contiguous memory access pattern?
+   * (2/4) Assuming the cache create a copy of memory *at* and *after* a
+     requested / particular location do you think `solve_upper_triangular` has
+     any inefficiencies? Why or why not? (Note that the cache may not actually
+     behave in this way but assume it does.)
  
-3. Just as in 2. above, copy the code you wrote for `gauss_seidel` and paste it
-   into a markdown cell with nice code formatting. Answer the following
+3. (6pts) Just as in 2. above, copy the code you wrote for `gauss_seidel` and
+   paste it into a markdown cell with nice code formatting. Answer the following
    questions about your implemenation:
    
-   * What are the memory requirements as a function of `n`, the system size? You
-     do not need to calculate the number of bytes but at least give a
+   * (2/6)What are the memory requirements as a function of `n`, the system
+     size? You do not need to calculate the number of bytes but at least give a
      description like "n-squared doubles for storing the matrix, n doubles for
      storing the right-hand side, etc."
-   * What parts of your code have contiguous access patterns?
-   * What parts do not have contiguous access patterns? Any thoughts on how to
-     improve this, if possible?
+   * (2/6) What parts of your code have contiguous access patterns?
+   * (2/6) What parts do not have contiguous access patterns? Any thoughts on
+     how to improve this, if possible?
    
+**Total Points:** 12/12
 
 ### 3) Documentation - 10%
 
@@ -284,6 +296,8 @@ The format must match the following layout,
 Write this documentation above the function prototype defined in the header
 files, not in the source files. Example documentation for `vec_add` has already
 been provided to you.
+
+**Total Points:** 10/10 *(one for each function)*
 
 ### 4) Performance - 10%
 
