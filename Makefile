@@ -1,7 +1,7 @@
 # compiler settings
 CC=gcc
 CFLAGS=-c -Wall -fPIC
-LDFLAGS=--shared
+LDFLAGS=-lm --shared
 
 # target
 LIBTARGET=libhomework2.so
