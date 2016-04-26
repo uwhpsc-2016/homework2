@@ -1,4 +1,4 @@
-# Homework #2 - Solution
+# Homework #2
 
 Homework #2 will test you on writing C code. In this assignment we will write
 several basic linear algebra routines as well as some basic linear system
