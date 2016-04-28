@@ -101,8 +101,7 @@ from numpy.random import randn
 from homework2 import gauss_seidel
 from test_homework2 import five_diagonal_system
 N = %d
-A = five_diagonal_system(N)
-b = randn(N)
+A,b = five_diagonal_system(N)
 '''%(n)
     total_time = timeit('gauss_seidel(A,b)', setup=s, number=number)
     avg_time = total_time / number
